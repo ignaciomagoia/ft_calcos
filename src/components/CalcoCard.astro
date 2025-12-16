@@ -37,20 +37,20 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
       <span class="text-2xl font-bold text-accent">{priceLabel}</span>
     </div>
     <div class="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2" data-qty-controls>
+      <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2">
         <button
           type="button"
           class="h-8 w-8 rounded-full bg-white text-lg font-semibold text-primary shadow hover:bg-slate-100"
-          data-qty-action="minus"
+          data-action="dec"
           aria-label={`Restar ${calco.name}`}
         >
           -
         </button>
-        <span class="w-8 text-center font-semibold text-primary" data-qty-value>1</span>
+        <span class="w-8 text-center font-semibold text-primary" data-qty>1</span>
         <button
           type="button"
           class="h-8 w-8 rounded-full bg-primary text-lg font-semibold text-white shadow hover:bg-slate-900"
-          data-qty-action="plus"
+          data-action="inc"
           aria-label={`Sumar ${calco.name}`}
         >
           +
@@ -59,7 +59,7 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
       <button
         type="button"
         class="inline-flex flex-1 items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-white shadow hover:bg-slate-900"
-        data-add-to-cart
+        data-action="add"
       >
         Agregar
       </button>

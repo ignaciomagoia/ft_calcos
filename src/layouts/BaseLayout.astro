@@ -3,8 +3,8 @@ import '../styles/global.css';
 
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
-const normalizedBase = base === '/' ? '' : base.endsWith('/') ? base.slice(0, -1) : base;
-const scriptSrc = `${normalizedBase}/scripts/cart.js`;
+const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
+const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
 ---
 <!DOCTYPE html>
 <html lang="es" data-base={base}>
@@ -22,7 +22,7 @@ const scriptSrc = `${normalizedBase}/scripts/cart.js`;
           <a href={base} class="hover:text-accent">Catalogo</a>
           <a href={`${base}como-comprar`} class="hover:text-accent">Como comprar</a>
           <a href={`${base}carrito`} class="hover:text-accent">
-            Carrito <span data-cart-count>(0)</span>
+            Carrito (<span data-cart-count>0</span>)
           </a>
         </nav>
       </div>
@@ -36,7 +36,14 @@ const scriptSrc = `${normalizedBase}/scripts/cart.js`;
         <p class="text-white/70">Hecho con Astro + Tailwind.</p>
       </div>
     </footer>
-    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-3 items-end">
+      <a
+        href={`${base}carrito`}
+        data-cart-floating
+        class="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-slate-900"
+      >
+        Carrito (<span data-cart-count>0</span>)
+      </a>
       <a
         href="https://instagram.com/tu-instagram"
         target="_blank"

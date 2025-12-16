@@ -4,15 +4,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev:scripts": "esbuild src/scripts/cart-client.ts --bundle --format=esm --sourcemap --outfile=public/scripts/cart-client.js --watch",
+    "dev:astro": "astro dev",
+    "dev": "npm-run-all -p dev:scripts dev:astro",
+    "build:scripts": "esbuild src/scripts/cart-client.ts --bundle --format=esm --outfile=public/scripts/cart-client.js",
+    "build": "npm run build:scripts && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
-    "autoprefixer": "^10.4.19",
     "astro": "^4.10.0",
+    "autoprefixer": "^10.4.19",
     "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.1",
+    "npm-run-all": "^4.1.5"
   }
 }

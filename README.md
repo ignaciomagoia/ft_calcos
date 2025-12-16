@@ -8,7 +8,7 @@ Sitio estatico hecho con Astro + Tailwind que ofrece catalogo responsive, carrit
 
 ## Correr en local
 1. Instalar dependencias: `npm install`.
-2. Ejecutar `npm run dev`.
+2. Ejecutar `npm run dev`. Este comando levanta Astro y compila el script del carrito con esbuild.
 3. Abrir `http://localhost:4321`.
 
 ## Editar calcos
@@ -39,10 +39,10 @@ Sitio estatico hecho con Astro + Tailwind que ofrece catalogo responsive, carrit
 ## Archivos clave
 - `public/data/calcos.json`: Fuente editable del catalogo.
 - `public/images/`: Biblioteca de imagenes del sitio.
-- `public/scripts/cart.js`: Logica del carrito (localStorage + WhatsApp).
+- `src/scripts/cart-client.ts`: Logica de UI del carrito (se compila a `public/scripts/cart-client.js` con esbuild).
 - `src/components/CalcoCard.astro`: Representacion visual de cada calco.
 - `src/pages/`: Paginas publicas (`index`, `como-comprar`, `carrito`).
 
 ## Tips
-- Corre `npm run build` antes de deployar para validar que todo compile.
-- Para ajustar el mensaje o los datos de transferencia, edita las constantes al inicio de `public/scripts/cart.js`.
+- Corre `npm run build` antes de deployar para validar que todo compile (ejecuta esbuild + Astro).
+- Para ajustar el mensaje o los datos de transferencia, edita las constantes al inicio de `src/scripts/cart-client.ts` y vuelve a ejecutar `npm run build:scripts` si no estas usando `npm run dev`.
