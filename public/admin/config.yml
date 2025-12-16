@@ -2,8 +2,10 @@
   name: github
   repo: ignaciomagoia/ft_calcos
   branch: main
+  base_url: https://crimson-violet-9bb1.pichichimagoia.workers.dev
+  auth_endpoint: auth
 media_folder: public/uploads
-public_folder: /ft_calcos/uploads
+public_folder: /uploads
 collections:
   - name: calcos
     label: Calcos
