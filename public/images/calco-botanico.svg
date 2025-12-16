@@ -1,0 +1,8 @@
+﻿<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" rx="32" fill="#ecfccb" />
+  <path d="M100 300 C150 220 120 160 200 120 C280 80 260 40 320 40 C380 40 360 120 420 120 C480 120 460 200 500 220" stroke="#15803d" stroke-width="16" fill="none" stroke-linecap="round" />
+  <circle cx="200" cy="140" r="28" fill="#bbf7d0" stroke="#166534" stroke-width="6" />
+  <circle cx="340" cy="90" r="24" fill="#bbf7d0" stroke="#166534" stroke-width="6" />
+  <circle cx="440" cy="150" r="32" fill="#bbf7d0" stroke="#166534" stroke-width="6" />
+  <text x="60" y="360" font-family="'Segoe UI', sans-serif" font-size="48" fill="#166534" font-weight="700">Botanico</text>
+</svg>

@@ -1,0 +1,20 @@
+﻿backend:
+  name: github
+  repo: ignaciomagoia/ft_calcos
+  branch: main
+media_folder: public/uploads
+public_folder: /ft_calcos/uploads
+collections:
+  - name: calcos
+    label: Calcos
+    label_singular: Calco
+    folder: src/content/calcos
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: Nombre, name: name, widget: string }
+      - { label: Precio ARS, name: price, widget: number, value_type: int, min: 0 }
+      - { label: Imagen, name: image, widget: image }
+      - { label: URL de pago, name: payment_url, widget: string }
+      - { label: Descripcion, name: body, widget: markdown }

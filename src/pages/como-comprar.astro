@@ -1,0 +1,55 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    title: 'Explora el catalogo',
+    body: 'Recorre la grilla y elegi estilos, colores y tamanos. Cada tarjeta muestra foto, precio e informacion basica.'
+  },
+  {
+    title: 'Lee la descripcion',
+    body: 'Abri el detalle para conocer materiales, terminaciones y recomendaciones de uso. Si necesitas tamanos especiales, avisanos.'
+  },
+  {
+    title: 'Toca "Comprar"',
+    body: 'El boton te lleva al enlace de pago (Mercado Pago, tienda o link directo). Se abre en una ventana nueva para completar tus datos con seguridad.'
+  },
+  {
+    title: 'Seguimiento y entrega',
+    body: 'Cuando se acredita el pago coordinamos retiro, envio o instalacion y te mantenemos informado por WhatsApp.'
+  }
+];
+---
+<BaseLayout title="Como comprar | FT Calcos" description="Guia rapida para comprar tus calcos.">
+  <section class="space-y-6 max-w-3xl mx-auto text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Guia rapida</p>
+    <h1 class="text-4xl font-bold text-primary">Como comprar tus calcos</h1>
+    <p class="text-lg text-slate-600">
+      Comprar es tan simple como elegir tu diseno favorito, hacer clic en <strong>Comprar</strong> y seguir el enlace al medio de pago.
+      Si preferis coordinar manualmente, escribinos por WhatsApp o Instagram.
+    </p>
+  </section>
+  <section class="mt-12 grid gap-6">
+    {steps.map((step, index) => (
+      <article class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex gap-4" key={step.title}>
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-xl font-semibold">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <div>
+          <h2 class="text-xl font-semibold text-primary">{step.title}</h2>
+          <p class="text-slate-600">{step.body}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+  <section class="mt-12 bg-primary rounded-3xl text-white p-8 grid gap-4 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-semibold">Necesitas otra forma de pago?</h2>
+      <p class="text-white/80">Coordinamos transferencias, pagos en efectivo y entregas personalizadas. Escribinos y lo resolvemos.</p>
+    </div>
+    <div class="flex gap-4 items-center">
+      <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" class="flex-1 rounded-full bg-white/10 border border-white/30 px-4 py-3 text-center font-semibold hover:bg-white/20">WhatsApp</a>
+      <a href="https://instagram.com/tu-instagram" target="_blank" rel="noopener noreferrer" class="flex-1 rounded-full bg-white text-primary font-semibold px-4 py-3 text-center">Instagram</a>
+    </div>
+  </section>
+</BaseLayout>
