@@ -20,11 +20,10 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
 <article
   class="flex flex-col rounded-3xl border border-slate-200 bg-white shadow-sm"
   data-product-card
-  data-product-id={calco.id}
-  data-product-name={calco.name}
-  data-product-price={calco.price}
-  data-product-image={imageSrc}
-  data-product-description={calco.description}
+  data-id={calco.id}
+  data-name={calco.name}
+  data-price={calco.price}
+  data-image={calco.image}
   data-qty="1"
 >
   <img src={imageSrc} alt={`Calco ${calco.name}`} class="h-52 w-full rounded-t-3xl object-cover" loading="lazy" />
@@ -42,7 +41,7 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
         <button
           type="button"
           class="h-8 w-8 rounded-full bg-white text-lg font-semibold text-primary shadow hover:bg-slate-100"
-          data-qty-btn="minus"
+          data-qty-action="minus"
           aria-label={`Restar ${calco.name}`}
         >
           -
@@ -51,7 +50,7 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
         <button
           type="button"
           class="h-8 w-8 rounded-full bg-primary text-lg font-semibold text-white shadow hover:bg-slate-900"
-          data-qty-btn="plus"
+          data-qty-action="plus"
           aria-label={`Sumar ${calco.name}`}
         >
           +

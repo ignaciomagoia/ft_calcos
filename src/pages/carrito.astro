@@ -1,16 +1,43 @@
 ﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CartSummary from '../components/CartSummary.astro';
+
+const base = import.meta.env.BASE_URL || '/';
 ---
-<BaseLayout title="Carrito | FT Calcos" description="Revisa tus calcos antes de confirmar por WhatsApp.">
+<BaseLayout title="Carrito | FT Calcos" description="Revisa tu pedido y finalizalo por WhatsApp.">
   <section class="space-y-4 text-center">
     <p class="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Checkout WhatsApp</p>
-    <h1 class="text-4xl font-bold text-primary">Tu carrito</h1>
+    <h1 class="text-4xl font-bold text-primary">Carrito</h1>
     <p class="text-base text-slate-600">
-      Revisa los calcos agregados, ajusta cantidades y confirmalos enviando un mensaje automatico por WhatsApp.
+      Ajusta cantidades, elimina productos y tocá <strong>Finalizar por WhatsApp</strong> para enviarnos el detalle con el total y los datos de transferencia.
     </p>
   </section>
-  <section class="mt-10">
-    <CartSummary variant="page" />
+  <section class="mt-10" data-cart-page>
+    <div class="flex flex-col items-center gap-3 rounded-3xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center" data-cart-empty>
+      <p class="text-xl font-semibold text-primary">Todavía no agregaste calcos</p>
+      <p class="text-sm text-slate-500">Volvé al catálogo, elegí tus favoritos y agregalos desde cada tarjeta.</p>
+      <a href={base} class="rounded-full border border-primary px-6 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white">Ver catálogo</a>
+    </div>
+    <div class="space-y-6 hidden" data-cart-list>
+      <ul class="space-y-4" data-cart-items></ul>
+      <div class="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex items-center justify-between text-lg font-semibold text-primary">
+          <span>Total</span>
+          <span data-cart-total>$0</span>
+        </div>
+        <div class="space-y-1 text-sm text-slate-600">
+          <p><strong>Alias:</strong> ALIAS.EJEMPLO</p>
+          <p><strong>CBU:</strong> 0000000000000000000000</p>
+          <p>Adjunto comprobante cuando esté listo.</p>
+        </div>
+        <a
+          data-cart-whatsapp
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block rounded-full bg-primary px-4 py-3 text-center text-base font-semibold text-white shadow hover:bg-slate-900"
+        >
+          Finalizar por WhatsApp
+        </a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

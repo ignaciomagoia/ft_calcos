@@ -1,11 +1,10 @@
 ﻿---
 import '../styles/global.css';
-import FloatingCartButton from '../components/FloatingCartButton.astro';
-import CartDrawer from '../components/CartDrawer.astro';
-import cartScript from '../scripts/cart-ui.ts?url';
 
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
+const normalizedBase = base === '/' ? '' : base.endsWith('/') ? base.slice(0, -1) : base;
+const scriptSrc = `${normalizedBase}/scripts/cart.js`;
 ---
 <!DOCTYPE html>
 <html lang="es" data-base={base}>
@@ -22,7 +21,9 @@ const base = import.meta.env.BASE_URL || '/';
         <nav class="flex gap-4 text-sm font-medium">
           <a href={base} class="hover:text-accent">Catalogo</a>
           <a href={`${base}como-comprar`} class="hover:text-accent">Como comprar</a>
-          <a href={`${base}carrito`} class="hover:text-accent">Carrito</a>
+          <a href={`${base}carrito`} class="hover:text-accent">
+            Carrito <span data-cart-count>(0)</span>
+          </a>
         </nav>
       </div>
     </header>
@@ -53,8 +54,6 @@ const base = import.meta.env.BASE_URL || '/';
         WhatsApp
       </a>
     </div>
-    <FloatingCartButton />
-    <CartDrawer />
-    <script type="module" src={cartScript}></script>
+    <script type="module" src={scriptSrc}></script>
   </body>
 </html>

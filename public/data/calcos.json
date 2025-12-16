@@ -1,0 +1,5 @@
+[
+  {"id":"botanico-bloom","name":"Botanico Bloom","price":4200,"image":"/images/calco-botanico.svg","description":"Ilustracion botanica impresa en vinilo mate, perfecta para packaging eco, macetas y planners."},
+  {"id":"galaxia-neon","name":"Galaxia Neon","price":4500,"image":"/images/calco-galaxia.svg","description":"Laminado holografico resistente a rayones con brillo espacial. Ideal para notebooks y botellas metalicas."},
+  {"id":"retro-wave","name":"Retro Wave","price":3900,"image":"/images/calco-retro.svg","description":"Vinilo calandrado inspirado en sintetizadores ochenteros con adhesivo reposicionable para evitar burbujas."}
+]
