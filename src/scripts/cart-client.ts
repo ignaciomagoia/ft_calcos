@@ -4,6 +4,8 @@ import { addItem, getCart, getCount, getTotal, removeItem, updateQty } from '../
 const PHONE = '5493585760730';
 const ALIAS = 'FT.CALCOS.ALIAS';
 const CBU = '0000000000000000000000';
+const DEFAULT_FILTER_LABEL = 'Todos los calcos';
+let activeCategory = 'all';
 
 const currency = new Intl.NumberFormat('es-AR', {
   style: 'currency',
@@ -193,8 +195,64 @@ function initCartPage() {
   renderCartPage();
 }
 
+function setNavState(open: boolean) {
+  const drawer = document.querySelector<HTMLElement>('[data-nav-drawer]');
+  if (!drawer) return;
+  drawer.classList.toggle('open', open);
+  drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.classList.toggle('nav-locked', open);
+}
+
+function handleNavToggle(event: Event) {
+  const toggle = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-nav-toggle]');
+  if (!toggle) return;
+  const action = toggle.dataset.navToggle;
+  if (!action) return;
+  if (toggle.tagName !== 'A') {
+    event.preventDefault();
+  }
+  setNavState(action === 'open');
+}
+
+function applyCategoryFilter(value: string, label = DEFAULT_FILTER_LABEL) {
+  activeCategory = value;
+  const cards = document.querySelectorAll<HTMLElement>('[data-product-card]');
+  cards.forEach((card) => {
+    const cardCategory = card.dataset.category || '';
+    const show = value === 'all' || cardCategory === value;
+    card.classList.toggle('hidden', !show);
+  });
+  document.querySelectorAll<HTMLElement>('[data-filter-category]').forEach((btn) => {
+    const btnValue = btn.dataset.filterCategory || '';
+    const isActive = value === 'all' ? btnValue === 'all' : btnValue === value;
+    btn.classList.toggle('border-primary', isActive);
+    btn.classList.toggle('bg-slate-100', isActive);
+  });
+  const labelTarget = document.querySelector<HTMLElement>('[data-active-filter]');
+  if (labelTarget) {
+    labelTarget.textContent = label;
+  }
+}
+
+function handleFilterClick(event: Event) {
+  const button = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-filter-category]');
+  if (!button) return;
+  event.preventDefault();
+  const value = button.dataset.filterCategory || 'all';
+  const label = button.dataset.filterLabel || DEFAULT_FILTER_LABEL;
+  applyCategoryFilter(value === 'all' ? 'all' : value, label);
+  setNavState(false);
+}
+
+function initFiltering() {
+  applyCategoryFilter('all', DEFAULT_FILTER_LABEL);
+  document.addEventListener('click', handleFilterClick);
+}
+
 function init() {
   document.addEventListener('click', handleCatalogClick);
+  document.addEventListener('click', handleNavToggle);
+  initFiltering();
   initFloatingButton();
   initCartPage();
   updateCartBadge();

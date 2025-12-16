@@ -1,6 +1,15 @@
 ﻿---
 import '../styles/global.css';
 
+const menuCategories = [
+  'Musica',
+  'Mundo',
+  'Deportes y Futbol',
+  'Varios',
+  'Packs Mayorista',
+  'Encededores y Cargadores'
+];
+
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
 const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
@@ -15,16 +24,28 @@ const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
-    <header class="bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-40">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <a href={base} class="text-xl font-semibold tracking-tight text-primary">FT Calcos</a>
-        <nav class="flex gap-4 text-sm font-medium">
-          <a href={base} class="hover:text-accent">Catalogo</a>
-          <a href={`${base}como-comprar`} class="hover:text-accent">Como comprar</a>
-          <a href={`${base}carrito`} class="hover:text-accent">
-            Carrito (<span data-cart-count>0</span>)
-          </a>
-        </nav>
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <button
+          class="rounded-2xl border border-slate-200 p-2 text-slate-700 hover:bg-slate-50"
+          data-nav-toggle="open"
+          aria-label="Abrir menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 7H20" stroke-linecap="round" />
+            <path d="M4 12H20" stroke-linecap="round" />
+            <path d="M4 17H20" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a href={base} class="text-xl font-bold tracking-[0.3em] text-slate-900">FT</a>
+        <a href={`${base}carrito`} class="relative" aria-label="Ir al carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M6 6H21L19 13H8L6 6Z" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="9.5" cy="18.5" r="1.2" />
+            <circle cx="17.5" cy="18.5" r="1.2" />
+          </svg>
+          <span class="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white" data-cart-count>0</span>
+        </a>
       </div>
     </header>
     <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-10">
@@ -36,31 +57,49 @@ const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
         <p class="text-white/70">Hecho con Astro + Tailwind.</p>
       </div>
     </footer>
-    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-3 items-end">
-      <a
-        href={`${base}carrito`}
-        data-cart-floating
-        class="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-slate-900"
-      >
-        Carrito (<span data-cart-count>0</span>)
-      </a>
-      <a
-        href="https://instagram.com/tu-instagram"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-white shadow-lg border border-slate-200 rounded-full px-4 py-2 text-sm font-semibold text-primary hover:text-accent"
-      >
-        Instagram
-      </a>
-      <a
-        href="https://wa.me/5491112345678"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-accent text-white shadow-lg rounded-full px-4 py-2 text-sm font-semibold hover:bg-orange-500"
-      >
-        WhatsApp
-      </a>
+    <div class="nav-drawer" data-nav-drawer aria-hidden="true">
+      <button class="nav-overlay" data-nav-toggle="close" aria-label="Cerrar menu"></button>
+      <aside class="nav-panel">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-semibold text-slate-900">Menu</span>
+          <button class="rounded-full border border-slate-200 p-2 text-slate-500" data-nav-toggle="close" aria-label="Cerrar">
+            ✕
+          </button>
+        </div>
+        <nav class="mt-6 space-y-4 text-base font-medium text-slate-700">
+          <a href={base} class="block rounded-2xl bg-slate-100 px-4 py-3 hover:bg-slate-200" data-nav-toggle="close">Inicio</a>
+          <button
+            type="button"
+            class="flex w-full items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left hover:border-primary"
+            data-filter-category="all"
+            data-filter-label="Todos los calcos"
+          >
+            <span>Ver todos los productos</span>
+            <span class="text-xs uppercase tracking-widest text-slate-400">All</span>
+          </button>
+          <div class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Categorias</p>
+            {menuCategories.map((category) => (
+              <button
+                type="button"
+                class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-left hover:border-primary"
+                data-filter-category={category}
+                data-filter-label={category}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </nav>
+      </aside>
     </div>
+    <a
+      href={`${base}carrito`}
+      data-cart-floating
+      class="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-slate-900"
+    >
+      🛒 Carrito (<span data-cart-count>0</span>)
+    </a>
     <script type="module" src={scriptSrc}></script>
   </body>
 </html>

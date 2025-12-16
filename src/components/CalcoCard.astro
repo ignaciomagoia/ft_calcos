@@ -5,6 +5,7 @@ interface Calco {
   price: number;
   image: string;
   description: string;
+  category: string;
 }
 
 const { calco } = Astro.props as { calco: Calco };
@@ -18,47 +19,52 @@ const priceLabel = new Intl.NumberFormat('es-AR', {
 }).format(calco.price);
 ---
 <article
-  class="flex flex-col rounded-3xl border border-slate-200 bg-white shadow-sm"
+  class="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
   data-product-card
   data-id={calco.id}
   data-name={calco.name}
   data-price={calco.price}
   data-image={calco.image}
+  data-category={calco.category}
   data-qty="1"
 >
-  <img src={imageSrc} alt={`Calco ${calco.name}`} class="h-52 w-full rounded-t-3xl object-cover" loading="lazy" />
-  <div class="flex flex-1 flex-col gap-4 p-6">
-    <header class="space-y-2">
-      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-slate-400">Calco</p>
-      <h3 class="text-2xl font-semibold text-primary">{calco.name}</h3>
+  <figure class="relative">
+    <img src={imageSrc} alt={`Calco ${calco.name}`} class="h-56 w-full object-cover" loading="lazy" />
+    <figcaption class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-600">
+      {calco.category}
+    </figcaption>
+  </figure>
+  <div class="flex flex-1 flex-col gap-4 p-5">
+    <header class="space-y-1">
+      <h3 class="text-xl font-semibold text-slate-900">{calco.name}</h3>
       <p class="text-sm leading-relaxed text-slate-600">{calco.description}</p>
     </header>
-    <div class="flex items-center justify-between">
-      <span class="text-2xl font-bold text-accent">{priceLabel}</span>
-    </div>
-    <div class="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2">
-        <button
-          type="button"
-          class="h-8 w-8 rounded-full bg-white text-lg font-semibold text-primary shadow hover:bg-slate-100"
-          data-action="dec"
-          aria-label={`Restar ${calco.name}`}
-        >
-          -
-        </button>
-        <span class="w-8 text-center font-semibold text-primary" data-qty>1</span>
-        <button
-          type="button"
-          class="h-8 w-8 rounded-full bg-primary text-lg font-semibold text-white shadow hover:bg-slate-900"
-          data-action="inc"
-          aria-label={`Sumar ${calco.name}`}
-        >
-          +
-        </button>
+    <div class="mt-auto space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-2xl font-bold text-primary">{priceLabel}</span>
+        <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5">
+          <button
+            type="button"
+            class="h-8 w-8 rounded-full bg-white text-lg font-semibold text-primary shadow hover:bg-slate-100"
+            data-action="dec"
+            aria-label={`Restar ${calco.name}`}
+          >
+            -
+          </button>
+          <span class="w-8 text-center font-semibold text-primary" data-qty>1</span>
+          <button
+            type="button"
+            class="h-8 w-8 rounded-full bg-primary text-lg font-semibold text-white shadow hover:bg-slate-900"
+            data-action="inc"
+            aria-label={`Sumar ${calco.name}`}
+          >
+            +
+          </button>
+        </div>
       </div>
       <button
         type="button"
-        class="inline-flex flex-1 items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-white shadow hover:bg-slate-900"
+        class="inline-flex w-full items-center justify-center rounded-2xl bg-primary px-4 py-3 text-base font-semibold text-white shadow hover:bg-slate-900"
         data-action="add"
       >
         Agregar
