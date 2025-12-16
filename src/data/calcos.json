@@ -1,0 +1,23 @@
+﻿[
+  {
+    "id": "galaxia-neon",
+    "name": "Galaxia Neon",
+    "price": 4500,
+    "image": "/uploads/calco-galaxia.svg",
+    "description": "Laminado holografico resistente a rayones con brillo espacial. Ideal para notebooks y botellas metalicas."
+  },
+  {
+    "id": "retro-wave",
+    "name": "Retro Wave",
+    "price": 3900,
+    "image": "/uploads/calco-retro.svg",
+    "description": "Vinilo calandrado inspirado en sintetizadores ochenteros con adhesivo reposicionable para evitar burbujas."
+  },
+  {
+    "id": "botanico-bloom",
+    "name": "Botanico Bloom",
+    "price": 4200,
+    "image": "/uploads/calco-botanico.svg",
+    "description": "Ilustracion botanica impresa en vinilo mate, perfecta para packaging eco, macetas y planners."
+  }
+]

@@ -1,10 +1,14 @@
 ﻿---
 import '../styles/global.css';
+import FloatingCartButton from '../components/FloatingCartButton.astro';
+import CartDrawer from '../components/CartDrawer.astro';
+import cartScript from '../scripts/cart-ui.ts?url';
+
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-base={base}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +22,7 @@ const base = import.meta.env.BASE_URL || '/';
         <nav class="flex gap-4 text-sm font-medium">
           <a href={base} class="hover:text-accent">Catalogo</a>
           <a href={`${base}como-comprar`} class="hover:text-accent">Como comprar</a>
-          <a href={`${base}admin`} class="hover:text-accent">Admin</a>
+          <a href={`${base}carrito`} class="hover:text-accent">Carrito</a>
         </nav>
       </div>
     </header>
@@ -28,7 +32,7 @@ const base = import.meta.env.BASE_URL || '/';
     <footer class="bg-primary text-white text-sm">
       <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p>&copy; {new Date().getFullYear()} FT Calcos. Todos los derechos reservados.</p>
-        <p class="text-white/70">Hecho con Astro + Decap CMS.</p>
+        <p class="text-white/70">Hecho con Astro + Tailwind.</p>
       </div>
     </footer>
     <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
@@ -49,5 +53,8 @@ const base = import.meta.env.BASE_URL || '/';
         WhatsApp
       </a>
     </div>
+    <FloatingCartButton />
+    <CartDrawer />
+    <script type="module" src={cartScript}></script>
   </body>
 </html>

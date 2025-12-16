@@ -23,3 +23,59 @@ a:hover {
 img {
   @apply block max-w-full;
 }
+
+body.cart-locked {
+  overflow: hidden;
+}
+
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 60;
+}
+
+.cart-drawer[data-open='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-overlay {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cart-drawer[data-open='true'] .cart-overlay {
+  opacity: 1;
+}
+
+.cart-panel {
+  width: min(420px, 100%);
+  height: 100%;
+  background: #fff;
+  box-shadow: -10px 0 40px rgba(15, 23, 42, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.cart-drawer[data-open='true'] .cart-panel {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .cart-panel {
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
+}

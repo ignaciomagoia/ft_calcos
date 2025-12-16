@@ -1,47 +1,69 @@
----
-import type { CollectionEntry } from 'astro:content';
-
-interface Props {
-  calco: CollectionEntry<'calcos'>;
+﻿---
+interface Calco {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
 }
 
-const { calco } = Astro.props as Props;
-const { name, price, image, payment_url } = calco.data;
-const description = calco.body.replace(/\n+/g, ' ').trim();
-const formattedDescription = description.length > 140 ? `${description.slice(0, 137)}...` : description;
+const { calco } = Astro.props as { calco: Calco };
+const base = import.meta.env.BASE_URL || '/';
+const isAbsolute = /^https?:\/\//i.test(calco.image) || calco.image.startsWith('data:');
+const imageSrc = isAbsolute ? calco.image : `${base}${calco.image.replace(/^\//, '')}`;
 const priceLabel = new Intl.NumberFormat('es-AR', {
   style: 'currency',
   currency: 'ARS',
   maximumFractionDigits: 0
-}).format(price);
-const base = import.meta.env.BASE_URL || '/';
-const assetUrl = (path: string) => {
-  if (/^https?:\/\//i.test(path) || path.startsWith('data:')) return path;
-  return `${base}${path.replace(/^\//, '')}`;
-};
-const imageSrc = assetUrl(image);
+}).format(calco.price);
 ---
-<article class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col">
-  <img src={imageSrc} alt={`Calco ${name}`} class="h-48 w-full object-cover" loading="lazy" />
-  <div class="flex-1 flex flex-col gap-4 p-5">
-    <header class="space-y-1">
-      <h3 class="text-lg font-semibold text-primary">{name}</h3>
-      <p class="text-sm text-slate-500 leading-relaxed">{formattedDescription}</p>
+<article
+  class="flex flex-col rounded-3xl border border-slate-200 bg-white shadow-sm"
+  data-product-card
+  data-product-id={calco.id}
+  data-product-name={calco.name}
+  data-product-price={calco.price}
+  data-product-image={imageSrc}
+  data-product-description={calco.description}
+  data-qty="1"
+>
+  <img src={imageSrc} alt={`Calco ${calco.name}`} class="h-52 w-full rounded-t-3xl object-cover" loading="lazy" />
+  <div class="flex flex-1 flex-col gap-4 p-6">
+    <header class="space-y-2">
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-slate-400">Calco</p>
+      <h3 class="text-2xl font-semibold text-primary">{calco.name}</h3>
+      <p class="text-sm leading-relaxed text-slate-600">{calco.description}</p>
     </header>
-    <div class="mt-auto flex items-center justify-between">
-      <span class="text-xl font-bold text-accent">{priceLabel}</span>
-      <a
-        href={payment_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-slate-900"
+    <div class="flex items-center justify-between">
+      <span class="text-2xl font-bold text-accent">{priceLabel}</span>
+    </div>
+    <div class="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-2" data-qty-controls>
+        <button
+          type="button"
+          class="h-8 w-8 rounded-full bg-white text-lg font-semibold text-primary shadow hover:bg-slate-100"
+          data-qty-btn="minus"
+          aria-label={`Restar ${calco.name}`}
+        >
+          -
+        </button>
+        <span class="w-8 text-center font-semibold text-primary" data-qty-value>1</span>
+        <button
+          type="button"
+          class="h-8 w-8 rounded-full bg-primary text-lg font-semibold text-white shadow hover:bg-slate-900"
+          data-qty-btn="plus"
+          aria-label={`Sumar ${calco.name}`}
+        >
+          +
+        </button>
+      </div>
+      <button
+        type="button"
+        class="inline-flex flex-1 items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-white shadow hover:bg-slate-900"
+        data-add-to-cart
       >
-        Comprar
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-          <path d="M13.5 5.25H18.75V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M5.25 18.75L18.75 5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
+        Agregar
+      </button>
     </div>
   </div>
 </article>
