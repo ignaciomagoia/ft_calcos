@@ -29,10 +29,7 @@ const categoryCards = categories.map((category) => ({
     </div>
     <p class="text-sm font-semibold uppercase tracking-[0.4em] text-accent">Nueva temporada</p>
     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Pega tu estilo</h1>
-    <p class="text-lg text-slate-600 max-w-2xl mx-auto md:mx-0">
-      Stickers, vinilos y planchas listas para personalizar botellas, cuadernos, cascos y todo lo que imagines. Elegi tus dise?os
-      favoritos, agregalos al carrito y coordinemos por WhatsApp.
-    </p>
+    
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center justify-center md:justify-start">
       <a href="#catalogo" class="rounded-full bg-primary px-8 py-3 text-center text-white text-base font-semibold shadow-lg shadow-primary/30 hover:bg-accent transition-colors">
         Ver catalogo
@@ -48,22 +45,22 @@ const categoryCards = categories.map((category) => ({
       <h2 class="text-3xl font-bold text-slate-900">Explora por tipo de calco</h2>
       <p class="text-slate-600">Hace clic y te llevamos directo al catálogo filtrado de esa categoria.</p>
     </div>
-    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
       {categoryCards.map((category) => (
         <a
           href={category.href}
-          class="flex w-full flex-col justify-between rounded-[32px] p-6 text-left text-white shadow-lg transition hover:-translate-y-1"
+          class="flex w-full flex-col justify-between rounded-[28px] p-4 text-left text-white shadow-lg transition hover:-translate-y-1"
           style={`background:${category.gradient}`}
         >
-          <div class="flex items-center gap-4">
-            <img src={category.imageSrc} alt={category.label} class="h-24 w-24 rounded-3xl bg-white/20 p-3" loading="lazy" />
+          <div class="flex items-center gap-3">
+            <img src={category.imageSrc} alt={category.label} class="h-20 w-20 rounded-3xl bg-white/20 p-2" loading="lazy" />
             <div>
-              <p class="text-xs uppercase tracking-[0.4em] text-white/80">Categoria</p>
-              <h3 class="text-2xl font-semibold">{category.label}</h3>
+              <p class="text-[0.6rem] uppercase tracking-[0.4em] text-white/80">Categoria</p>
+              <h3 class="text-xl font-semibold">{category.label}</h3>
             </div>
           </div>
-          <p class="mt-6 text-sm text-white/90">{category.description}</p>
-          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+          <p class="mt-4 text-xs sm:text-sm text-white/90">{category.description}</p>
+          <span class="mt-3 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold">
             Ver productos
             <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
