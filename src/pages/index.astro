@@ -1,4 +1,4 @@
-Ôªø---
+---
 import { readFile } from 'node:fs/promises';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CalcoCard from '../components/CalcoCard.astro';
@@ -34,7 +34,7 @@ const categoryCards = categories.map((category) => ({
       <a href="#catalogo" class="rounded-full bg-primary px-8 py-3 text-center text-white text-base font-semibold shadow-lg shadow-primary/30 hover:bg-accent transition-colors">
         Ver catalogo
       </a>
-      <span class="text-sm uppercase tracking-[0.3em] text-slate-400">envios a todo el pais</span>
+      <span class="text-xs uppercase tracking-[0.25em] text-accent">envios a todo el pais</span>
     </div>
   </section>
 
@@ -43,19 +43,19 @@ const categoryCards = categories.map((category) => ({
     <div class="flex flex-col gap-2">
       <p class="text-xs uppercase tracking-[0.4em] text-slate-400">categorias</p>
       <h2 class="text-3xl font-bold text-slate-900">Explora por tipo de calco</h2>
-      <p class="text-slate-600">Hace clic y te llevamos directo al cat√°logo filtrado de esa categoria.</p>
+      <p class="text-slate-600">Hace clic y te llevamos directo al cat·logo filtrado de esa categoria.</p>
     </div>
-    <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 auto-rows-fr">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr max-w-3xl mx-auto">
       {categoryCards.map((category) => (
         <a
           href={category.href}
-          class="flex w-full flex-col justify-between rounded-[28px] p-4 text-left text-white shadow-lg transition hover:-translate-y-1 min-h-[210px] sm:min-h-[230px]"
+          class="flex w-full flex-col justify-between rounded-[28px] p-4 text-left text-white shadow-lg transition hover:-translate-y-1 min-h-[210px]"
           style={`background:${category.gradient}`}
         >
           <div class="flex items-center gap-3">
             <img src={category.imageSrc} alt={category.label} class="h-20 w-20 rounded-3xl bg-white/20 p-2" loading="lazy" />
             <div>
-              <p class="text-[0.6rem] uppercase tracking-[0.4em] text-white/80">Categoria</p>
+              <p class="text-[0.55rem] uppercase tracking-[0.35em] text-white/80">Categoria</p>
               <h3 class="text-xl font-semibold">{category.label}</h3>
             </div>
           </div>
@@ -75,10 +75,10 @@ const categoryCards = categories.map((category) => ({
     <div class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between mb-8">
       <div>
         <p class="text-xs uppercase tracking-[0.4em] text-slate-400">catalogo</p>
-        <h2 class="text-3xl font-semibold text-slate-900">Eleg√≠ tu pr√≥ximo calco</h2>
+        <h2 class="text-3xl font-semibold text-slate-900">ElegÌ tu prÛximo calco</h2>
         <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400" data-active-filter>Todos los calcos</p>
       </div>
-      <span class="text-sm text-slate-500">{catalog.length} dise√±os disponibles</span>
+      <span class="text-sm text-slate-500">{catalog.length} diseÒos disponibles</span>
     </div>
     <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
       {catalog.map((calco) => (
