@@ -50,7 +50,7 @@ const logoIcon = withBase('/images/logoicono.png');
         </a>
       </div>
     </header>
-    <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-10">
+    <main class="flex-1 w-full max-w-6xl mx-auto px-4 pt-10 pb-28 md:pb-16">
       <slot />
     </main>
     <footer class="bg-slate-900 text-white text-sm mt-10">
@@ -97,7 +97,7 @@ const logoIcon = withBase('/images/logoicono.png');
     <a
       href={withBase('/carrito')}
       data-cart-floating
-      class="fixed bottom-24 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-accent"
+      class="fixed bottom-28 md:bottom-24 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-accent"
     >
       ?? Carrito (<span data-cart-count>0</span>)
     </a>
