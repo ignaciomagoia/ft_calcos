@@ -1,9 +1,9 @@
 ﻿import type { CartInput, CartItem } from '../lib/cart';
 import { addItem, getCart, getCount, getTotal, removeItem, updateQty } from '../lib/cart';
 
-const PHONE = '5493585760730';
-const ALIAS = 'FT.CALCOS.ALIAS';
-const CBU = '0000000000000000000000';
+const PHONE = '5493516183951';
+const ALIAS = 'efete.calcos';
+const CBU = '0000003100080790340964';
 const DEFAULT_FILTER_LABEL = 'Todos los calcos';
 let activeCategory = 'all';
 
