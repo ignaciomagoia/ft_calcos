@@ -10,7 +10,7 @@ const dataBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 const withBase = (path: string) => `${basePrefix}${path.startsWith('/') ? path : `/${path}`}` || '/';
 const scriptSrc = withBase('/scripts/cart-client.js');
-const logoIcon = withBase('/images/logo-icon.svg');
+const logoIcon = withBase('/images/logoicono.png');
 ---
 <!DOCTYPE html>
 <html lang="es" data-base={dataBase}>
