@@ -10,9 +10,15 @@ interface Calco {
 
 const { calco } = Astro.props as { calco: Calco };
 const rawBase = import.meta.env.BASE_URL || '/';
-const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
+const normalizedBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const withBase = (path: string) => {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  const trimmed = path.startsWith('/') ? path.slice(1) : path;
+  return `${normalizedBase}${trimmed}`;
+};
 const isAbsolute = /^https?:\/\//i.test(calco.image) || calco.image.startsWith('data:');
-const imageSrc = isAbsolute ? calco.image : `${basePrefix}${calco.image}`;
+const imageSrc = isAbsolute ? calco.image : withBase(calco.image);
 const priceLabel = new Intl.NumberFormat('es-AR', {
   style: 'currency',
   currency: 'ARS',
