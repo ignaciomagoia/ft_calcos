@@ -1,5 +1,10 @@
 [
-  {"id":"botanico-bloom","name":"Botanico Bloom","price":4200,"image":"/images/calco-botanico.svg","description":"Ilustracion botanica impresa en vinilo mate, perfecta para packaging eco, macetas y planners.","category":"Varios"},
-  {"id":"galaxia-neon","name":"Galaxia Neon","price":4500,"image":"/images/calco-galaxia.svg","description":"Laminado holografico resistente a rayones con brillo espacial. Ideal para notebooks y botellas metalicas.","category":"Mundo"},
-  {"id":"retro-wave","name":"Retro Wave","price":3900,"image":"/images/calco-retro.svg","description":"Vinilo calandrado inspirado en sintetizadores ochenteros con adhesivo reposicionable para evitar burbujas.","category":"Musica"}
+  {"id":"smile-striker","name":"Smile Striker","price":4200,"image":"/images/calco-striker.svg","description":"Set de strikers brillantes con laminado mate anti rayones.","category":"Strikers"},
+  {"id":"galaxia-neon","name":"Galaxia Neon","price":4500,"image":"/images/calco-galaxia.svg","description":"Laminado holografico resistente a rayones con brillo espacial. Ideal para notebooks y botellas metalicas.","category":"Vinilos especiales"},
+  {"id":"retro-wave","name":"Retro Wave","price":3900,"image":"/images/calco-retro.svg","description":"Vinilo calandrado inspirado en sintetizadores ochenteros con adhesivo reposicionable para evitar burbujas.","category":"Planchas tematicas"},
+  {"id":"botanico-bloom","name":"Botanico Bloom","price":4600,"image":"/images/calco-botanico.svg","description":"Ilustracion botanica impresa en vinilo mate, perfecta para packaging eco, macetas y planners.","category":"Planchas personalizadas"},
+  {"id":"tu-logo","name":"Tu Logo en Sticker","price":5200,"image":"/images/calco-personalizado.svg","description":"Subi tu logo o idea y armamos un set personalizado con corte a medida.","category":"Stickers personalizados"},
+  {"id":"promo-emprendedor","name":"Pack Emprendedor","price":12000,"image":"/images/calco-mayorista.svg","description":"Combo de 100 stickers mixtos con tu marca listo para revender.","category":"Promo emprendedor"},
+  {"id":"vinilo-lux","name":"Vinilo Lux","price":7900,"image":"/images/calco-vinilo.svg","description":"Vinilo premium con laminado UV para cascos y elementos expuestos.","category":"Vinilos especiales"},
+  {"id":"pack-mayorista","name":"Pack Mayorista","price":25000,"image":"/images/calco-mayorista.svg","description":"300 stickers mix para revendedores con precios especiales.","category":"Pack mayoristas"}
 ]

@@ -2,6 +2,7 @@
 import { readFile } from 'node:fs/promises';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CalcoCard from '../components/CalcoCard.astro';
+import { categories } from '../data/categories';
 
 const dataFile = new URL('../../public/data/calcos.json', import.meta.url);
 const catalogData = JSON.parse(await readFile(dataFile, 'utf-8'));
@@ -14,54 +15,17 @@ const heroImages = catalog.slice(0, 3).map((item) => ({
   ...item,
   imageSrc: toBasePath(item.image)
 }));
-const categoryCards = [
-  {
-    label: 'Strikers',
-    description: 'Papeles brillantes para notebooks y cascos.',
-    value: 'Strikers',
-    gradient: 'linear-gradient(135deg,#4bbcd6,#3aa2b6)'
-  },
-  {
-    label: 'Stickers personalizados',
-    description: 'Mandanos tu logo y armamos packs únicos.',
-    value: 'Stickers personalizados',
-    gradient: 'linear-gradient(135deg,#6366f1,#4338ca)'
-  },
-  {
-    label: 'Planchas tematicas',
-    description: 'Ideas listas para tus emprendimientos.',
-    value: 'Planchas tematicas',
-    gradient: 'linear-gradient(135deg,#fb7185,#f43f5e)'
-  },
-  {
-    label: 'Promo emprendedor',
-    description: 'Combos económicos para stockearte.',
-    value: 'Promo emprendedor',
-    gradient: 'linear-gradient(135deg,#f97316,#facc15)'
-  },
-  {
-    label: 'Vinilos especiales',
-    description: 'Material premium para superficies difíciles.',
-    value: 'Vinilos especiales',
-    gradient: 'linear-gradient(135deg,#14b8a6,#0ea5e9)'
-  },
-  {
-    label: 'Planchas personalizadas',
-    description: 'Elegí tamaños, cantidades y acabados.',
-    value: 'Planchas personalizadas',
-    gradient: 'linear-gradient(135deg,#ec4899,#a855f7)'
-  },
-  {
-    label: 'Pack mayoristas',
-    description: 'Precios especiales para revender.',
-    value: 'Pack mayoristas',
-    gradient: 'linear-gradient(135deg,#1f2937,#0f172a)'
-  }
-];
+
+const categoryCards = categories.map((category) => ({
+  ...category,
+  imageSrc: toBasePath(category.image),
+  href: toBasePath(`/categorias/${category.slug}`)
+}));
 ---
 <BaseLayout title="Catalogo | FT Calcos" description="Catalogo de calcos personalizados listos para imprimir.">
   <section class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
     <div class="space-y-6">
+      <img src={toBasePath('/images/logo-full.svg')} alt="Efete Calcos" class="h-20 w-auto" loading="lazy" />
       <p class="text-sm font-semibold uppercase tracking-[0.4em] text-accent">Nueva temporada</p>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Pega tu estilo</h1>
       <p class="text-lg text-slate-600 max-w-2xl">
@@ -99,23 +63,30 @@ const categoryCards = [
     <div class="flex flex-col gap-2">
       <p class="text-xs uppercase tracking-[0.4em] text-slate-400">categorias</p>
       <h2 class="text-3xl font-bold text-slate-900">Explora por tipo de calco</h2>
-      <p class="text-slate-600">Hace clic y filtramos el catálogo para esa categoria.</p>
+      <p class="text-slate-600">Hace clic y te llevamos directo al catálogo filtrado de esa categoria.</p>
     </div>
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {categoryCards.map((category) => (
-        <button
-          type="button"
-          class="flex w-full flex-col justify-between rounded-[28px] p-6 text-left text-white shadow-lg transition hover:scale-[1.01]"
+        <a
+          href={category.href}
+          class="flex w-full flex-col justify-between rounded-[32px] p-6 text-left text-white shadow-lg transition hover:-translate-y-1"
           style={`background:${category.gradient}`}
-          data-filter-category={category.value}
-          data-filter-label={category.label}
         >
-          <div>
-            <p class="text-xs uppercase tracking-[0.4em] text-white/80">Categoria</p>
-            <h3 class="text-2xl font-semibold">{category.label}</h3>
+          <div class="flex items-center gap-4">
+            <img src={category.imageSrc} alt={category.label} class="h-24 w-24 rounded-3xl bg-white/20 p-3" loading="lazy" />
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-white/80">Categoria</p>
+              <h3 class="text-2xl font-semibold">{category.label}</h3>
+            </div>
           </div>
-          <p class="mt-4 text-sm text-white/90">{category.description}</p>
-        </button>
+          <p class="mt-6 text-sm text-white/90">{category.description}</p>
+          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+            Ver productos
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
       ))}
     </div>
   </section>

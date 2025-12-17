@@ -1,0 +1,66 @@
+---
+import { readFile } from 'node:fs/promises';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CalcoCard from '../../components/CalcoCard.astro';
+import { categories } from '../../data/categories';
+
+export async function getStaticPaths() {
+  const dataFile = new URL('../../../public/data/calcos.json', import.meta.url);
+  const catalogData = JSON.parse(await readFile(dataFile, 'utf-8'));
+  const normalize = (value: string) => value.trim().toLowerCase();
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: {
+      category,
+      products: catalogData.filter((item: { category: string }) => normalize(item.category) === normalize(category.label))
+    }
+  }));
+}
+
+const { category, products } = Astro.props as {
+  category: (typeof categories)[number];
+  products: Array<{
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    description: string;
+    category: string;
+  }>;
+};
+
+const rawBase = import.meta.env.BASE_URL || '/';
+const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
+const toBasePath = (path: string) => `${basePrefix}${path.startsWith('/') ? path : `/${path}`}` || '/';
+const heroImage = toBasePath(category.image);
+---
+<BaseLayout title={`${category.label} | FT Calcos`} description={`Catalogo de ${category.label}`}>
+  <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+    <div class="space-y-4">
+      <p class="text-xs uppercase tracking-[0.4em] text-accent">Categoria</p>
+      <h1 class="text-4xl font-black text-slate-900">{category.label}</h1>
+      <p class="text-lg text-slate-600">{category.description}</p>
+      <a href={toBasePath('/#catalogo')} class="inline-flex items-center gap-2 rounded-full border border-primary px-6 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white">
+        Volver al catalogo completo
+      </a>
+    </div>
+    <div class="rounded-[32px] bg-white/90 p-6 shadow-xl shadow-slate-200/60">
+      <img src={heroImage} alt={category.label} class="w-full h-48 object-contain" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="mt-12">
+    {products.length === 0 ? (
+      <div class="rounded-[28px] border border-dashed border-primary/40 bg-white/70 p-8 text-center text-slate-600">
+        Estamos cargando productos para esta categoria. Mientras tanto podes ver el
+        <a href={toBasePath('/')} class="font-semibold text-primary hover:underline"> catalogo completo</a>.
+      </div>
+    ) : (
+      <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+        {products.map((product) => (
+          <CalcoCard calco={product} />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

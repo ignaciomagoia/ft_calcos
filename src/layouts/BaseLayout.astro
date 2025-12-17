@@ -1,15 +1,8 @@
 ---
 import '../styles/global.css';
+import { categories as categoryDefinitions } from '../data/categories';
 
-const menuCategories = [
-  { label: 'Strikers', value: 'Strikers' },
-  { label: 'Stickers personalizados', value: 'Stickers personalizados' },
-  { label: 'Planchas tematicas', value: 'Planchas tematicas' },
-  { label: 'Promo emprendedor', value: 'Promo emprendedor' },
-  { label: 'Vinilos especiales', value: 'Vinilos especiales' },
-  { label: 'Planchas personalizadas', value: 'Planchas personalizadas' },
-  { label: 'Pack mayoristas', value: 'Pack mayoristas' }
-];
+const menuCategories = categoryDefinitions;
 
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
 const rawBase = import.meta.env.BASE_URL || '/';
@@ -17,6 +10,7 @@ const dataBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 const withBase = (path: string) => `${basePrefix}${path.startsWith('/') ? path : `/${path}`}` || '/';
 const scriptSrc = withBase('/scripts/cart-client.js');
+const logoIcon = withBase('/images/logo-icon.svg');
 ---
 <!DOCTYPE html>
 <html lang="es" data-base={dataBase}>
@@ -40,7 +34,10 @@ const scriptSrc = withBase('/scripts/cart-client.js');
             <path d="M4 17H20" stroke-linecap="round" />
           </svg>
         </button>
-        <a href={dataBase} class="text-2xl font-black tracking-[0.25em] text-slate-900">FT</a>
+        <a href={dataBase} class="flex items-center gap-2 text-2xl font-black text-slate-900">
+          <img src={logoIcon} alt="Efete Calcos" class="h-10 w-10" loading="lazy" />
+          <span class="tracking-[0.05em] text-base uppercase text-primary">efete calcos</span>
+        </a>
         <a href={withBase('/carrito')} class="relative rounded-full bg-white/60 p-2 shadow-sm" aria-label="Ir al carrito">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M6 6H21L19 13H8L6 6Z" stroke-linecap="round" stroke-linejoin="round" />
@@ -83,14 +80,13 @@ const scriptSrc = withBase('/scripts/cart-client.js');
           <div class="space-y-2">
             <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Categorias</p>
             {menuCategories.map((category) => (
-              <button
-                type="button"
-                class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-left hover:border-primary hover:bg-white"
-                data-filter-category={category.value}
-                data-filter-label={category.label}
+              <a
+                href={withBase(`/categorias/${category.slug}`)}
+                class="block w-full rounded-2xl border border-slate-200 px-4 py-3 text-left hover:border-primary hover:bg-white"
+                data-nav-toggle="close"
               >
                 {category.label}
-              </button>
+              </a>
             ))}
           </div>
         </nav>
