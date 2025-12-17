@@ -23,41 +23,24 @@ const categoryCards = categories.map((category) => ({
 }));
 ---
 <BaseLayout title="Catalogo | FT Calcos" description="Catalogo de calcos personalizados listos para imprimir.">
-  <section class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-    <div class="space-y-6">
-      <img src={toBasePath('/images/logovariante.png')} alt="Efete Calcos" class="h-20 w-auto" loading="lazy" />
-      <p class="text-sm font-semibold uppercase tracking-[0.4em] text-accent">Nueva temporada</p>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Pega tu estilo</h1>
-      <p class="text-lg text-slate-600 max-w-2xl">
-        Stickers, vinilos y planchas listas para personalizar botellas, cuadernos, cascos y todo lo que imagines. Elegi tus diseños
-        favoritos, agregalos al carrito y coordinemos por WhatsApp.
-      </p>
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href="#catalogo" class="rounded-full bg-primary px-8 py-3 text-center text-white text-base font-semibold shadow-lg shadow-primary/30 hover:bg-accent transition-colors">
-          Ver catalogo
-        </a>
-        <span class="text-sm uppercase tracking-[0.3em] text-slate-400">envios a todo el pais</span>
-      </div>
+    <section class="space-y-8 text-center md:text-left">
+    <div class="inline-flex items-center justify-center rounded-[36px] bg-white/90 p-4 shadow-lg shadow-slate-200/70 ring-1 ring-white/70">
+      <img src={toBasePath('/images/logovariante.png')} alt="Efete Calcos" class="h-20 w-auto object-contain" loading="lazy" />
     </div>
-    <div class="relative">
-      <div class="absolute inset-0 rounded-[32px] bg-gradient-to-br from-primary/30 to-accent/20 blur-2xl"></div>
-      <div class="relative grid gap-4 rounded-[32px] border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur">
-        <div class="flex justify-between text-xs uppercase tracking-[0.3em] text-slate-400">
-          <span>galeria ft calcos</span>
-          <span>coleccion 2025</span>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          {heroImages.map((item) => (
-            <div class="rounded-3xl bg-brand-soft p-4 flex flex-col items-center gap-3 shadow-sm" key={item.id}>
-              <img src={item.imageSrc} alt={item.name} class="h-28 w-full object-contain" loading="lazy" />
-              <p class="text-sm font-semibold text-slate-900 text-center">{item.name}</p>
-            </div>
-          ))}
-        </div>
-        <p class="text-slate-500 text-sm">+{catalog.length} diseños listos para imprimir.</p>
-      </div>
+    <p class="text-sm font-semibold uppercase tracking-[0.4em] text-accent">Nueva temporada</p>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Pega tu estilo</h1>
+    <p class="text-lg text-slate-600 max-w-2xl mx-auto md:mx-0">
+      Stickers, vinilos y planchas listas para personalizar botellas, cuadernos, cascos y todo lo que imagines. Elegi tus dise?os
+      favoritos, agregalos al carrito y coordinemos por WhatsApp.
+    </p>
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center justify-center md:justify-start">
+      <a href="#catalogo" class="rounded-full bg-primary px-8 py-3 text-center text-white text-base font-semibold shadow-lg shadow-primary/30 hover:bg-accent transition-colors">
+        Ver catalogo
+      </a>
+      <span class="text-sm uppercase tracking-[0.3em] text-slate-400">envios a todo el pais</span>
     </div>
   </section>
+
 
   <section class="mt-16 space-y-6">
     <div class="flex flex-col gap-2">

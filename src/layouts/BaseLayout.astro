@@ -35,7 +35,9 @@ const logoIcon = withBase('/images/logoicono.png');
           </svg>
         </button>
         <a href={dataBase} class="flex items-center gap-2 text-2xl font-black text-slate-900">
-          <img src={logoIcon} alt="Efete Calcos" class="h-10 w-10" loading="lazy" />
+          <span class="flex h-12 w-12 items-center justify-center rounded-3xl bg-white/90 p-1 shadow-sm ring-1 ring-white/60">
+            <img src={logoIcon} alt="Efete Calcos" class="h-full w-full object-contain" loading="lazy" />
+          </span>
           <span class="tracking-[0.05em] text-base uppercase text-primary">efete calcos</span>
         </a>
         <a href={withBase('/carrito')} class="relative rounded-full bg-white/60 p-2 shadow-sm" aria-label="Ir al carrito">
