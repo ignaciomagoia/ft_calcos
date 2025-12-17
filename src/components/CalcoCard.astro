@@ -9,9 +9,10 @@ interface Calco {
 }
 
 const { calco } = Astro.props as { calco: Calco };
-const base = import.meta.env.BASE_URL || '/';
+const rawBase = import.meta.env.BASE_URL || '/';
+const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 const isAbsolute = /^https?:\/\//i.test(calco.image) || calco.image.startsWith('data:');
-const imageSrc = isAbsolute ? calco.image : `${base}${calco.image.replace(/^\//, '')}`;
+const imageSrc = isAbsolute ? calco.image : `${basePrefix}${calco.image}`;
 const priceLabel = new Intl.NumberFormat('es-AR', {
   style: 'currency',
   currency: 'ARS',

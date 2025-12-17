@@ -11,12 +11,14 @@ const menuCategories = [
 ];
 
 const { title = 'FT Calcos', description = 'Calcos personalizados para todos tus productos.' } = Astro.props;
-const base = import.meta.env.BASE_URL || '/';
-const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
-const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
+const rawBase = import.meta.env.BASE_URL || '/';
+const dataBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const basePrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
+const withBase = (path: string) => `${basePrefix}${path.startsWith('/') ? path : `/${path}`}` || '/';
+const scriptSrc = withBase('/scripts/cart-client.js');
 ---
 <!DOCTYPE html>
-<html lang="es" data-base={base}>
+<html lang="es" data-base={dataBase}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,8 +39,8 @@ const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
             <path d="M4 17H20" stroke-linecap="round" />
           </svg>
         </button>
-        <a href={base} class="text-xl font-bold tracking-[0.3em] text-slate-900">FT</a>
-        <a href={`${base}carrito`} class="relative" aria-label="Ir al carrito">
+        <a href={dataBase} class="text-xl font-bold tracking-[0.3em] text-slate-900">FT</a>
+        <a href={withBase('/carrito')} class="relative" aria-label="Ir al carrito">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M6 6H21L19 13H8L6 6Z" stroke-linecap="round" stroke-linejoin="round" />
             <circle cx="9.5" cy="18.5" r="1.2" />
@@ -67,7 +69,7 @@ const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
           </button>
         </div>
         <nav class="mt-6 space-y-4 text-base font-medium text-slate-700">
-          <a href={base} class="block rounded-2xl bg-slate-100 px-4 py-3 hover:bg-slate-200" data-nav-toggle="close">Inicio</a>
+          <a href={dataBase} class="block rounded-2xl bg-slate-100 px-4 py-3 hover:bg-slate-200" data-nav-toggle="close">Inicio</a>
           <button
             type="button"
             class="flex w-full items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left hover:border-primary"
@@ -94,7 +96,7 @@ const scriptSrc = `${normalizedBase}/scripts/cart-client.js`;
       </aside>
     </div>
     <a
-      href={`${base}carrito`}
+      href={withBase('/carrito')}
       data-cart-floating
       class="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-slate-900"
     >
