@@ -1,4 +1,4 @@
-﻿---
+---
 import '../styles/global.css';
 
 const menuCategories = [
@@ -56,7 +56,6 @@ const scriptSrc = withBase('/scripts/cart-client.js');
     <footer class="bg-primary text-white text-sm">
       <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p>&copy; {new Date().getFullYear()} FT Calcos. Todos los derechos reservados.</p>
-        <p class="text-white/70">Hecho con Astro + Tailwind.</p>
       </div>
     </footer>
     <div class="nav-drawer" data-nav-drawer aria-hidden="true">
@@ -65,7 +64,7 @@ const scriptSrc = withBase('/scripts/cart-client.js');
         <div class="flex items-center justify-between">
           <span class="text-lg font-semibold text-slate-900">Menu</span>
           <button class="rounded-full border border-slate-200 p-2 text-slate-500" data-nav-toggle="close" aria-label="Cerrar">
-            ✕
+            &times;
           </button>
         </div>
         <nav class="mt-6 space-y-4 text-base font-medium text-slate-700">
@@ -100,7 +99,7 @@ const scriptSrc = withBase('/scripts/cart-client.js');
       data-cart-floating
       class="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-slate-900"
     >
-      🛒 Carrito (<span data-cart-count>0</span>)
+      ?? Carrito (<span data-cart-count>0</span>)
     </a>
     <script type="module" src={scriptSrc}></script>
   </body>
