@@ -28,7 +28,7 @@ Sitio estatico hecho con Astro + Tailwind que ofrece catalogo responsive, carrit
 ## Carrito y checkout
 - El contador de la navegacion muestra la cantidad total en tiempo real.
 - La pagina `/carrito` lista productos, permite sumar/restar o quitar y muestra el total.
-- El boton **Finalizar por WhatsApp** abre `https://wa.me/5493585760730` con el mensaje que incluye el detalle, el total y los datos de transferencia (alias/CBU). Solo hace falta adjuntar el comprobante y coordinar la entrega.
+- El boton **Finalizar por WhatsApp** abre `https://wa.me/5493516183951` con el mensaje que incluye el detalle, el total y los datos de transferencia (alias/CBU). Solo hace falta adjuntar el comprobante y coordinar la entrega.
 
 ## Deploy a GitHub Pages
 1. `astro.config.mjs` ya apunta a `https://ignaciomagoia.github.io` con base `/ft_calcos`.
