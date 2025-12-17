@@ -8,7 +8,10 @@
 }
 
 body {
-  background: radial-gradient(circle at top left, #c09cff 0%, #9a7dff 45%, #6c4bff 80%, #4a21c3 100%);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c084fc 0%, #a855f7 35%, #7c3aed 70%, #4c1d95 100%);
+  background-attachment: fixed;
+  position: relative;
   @apply text-slate-900 antialiased;
 }
 
@@ -16,8 +19,10 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: url('data:image/svg+xml,%3Csvg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-opacity="0.15"%3E%3Cpath d="M0 80h160" stroke="%23ffffff"/%3E%3Cpath d="M80 0v160" stroke="%23ffffff"/%3E%3Ccircle cx="80" cy="80" r="38" stroke="%23ffffff"/%3E%3C/g%3E%3C/svg%3E') repeat;
-  opacity: 0.35;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2), transparent 40%),
+    radial-gradient(circle at 80% -10%, rgba(255, 255, 255, 0.08), transparent 40%),
+    url('data:image/svg+xml,%3Csvg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-opacity="0.12"%3E%3Cpath d="M0 80h160" stroke="%23ffffff"/%3E%3Cpath d="M80 0v160" stroke="%23ffffff"/%3E%3Ccircle cx="80" cy="80" r="38" stroke="%23ffffff"/%3E%3C/g%3E%3C/svg%3E') repeat;
+  opacity: 0.75;
   pointer-events: none;
   z-index: -1;
 }

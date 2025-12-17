@@ -25,7 +25,7 @@ const scriptSrc = withBase('/scripts/cart-client.js');
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen text-slate-900 flex flex-col">
+  <body class="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
     <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <button
@@ -97,20 +97,9 @@ const scriptSrc = withBase('/scripts/cart-client.js');
     <a
       href={withBase('/carrito')}
       data-cart-floating
-      class="fixed bottom-24 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-slate-900"
+      class="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xl hover:bg-slate-900"
     >
       ?? Carrito (<span data-cart-count>0</span>)
-    </a>
-    <a
-      href="https://wa.me/5493585760730"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-105 focus-visible:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
-      aria-label="Contactar por WhatsApp"
-    >
-      <svg viewBox="0 0 32 32" fill="currentColor" class="h-7 w-7">
-        <path d="M16.04 6c-4.96 0-9 3.99-9 8.91 0 1.57.43 3.11 1.25 4.46l-1.34 4.9 5.05-1.32a9.07 9.07 0 003.99.95h.01c4.96 0 9-3.99 9-8.91C24 9.99 21 6 16.04 6zm5.28 12.75c-.2.57-1.16 1.09-1.6 1.15-.41.06-.94.08-1.52-.09-.35-.11-.8-.26-1.38-.51-2.43-1.05-4-3.5-4.12-3.66-.12-.17-.98-1.3-.98-2.48 0-1.18.62-1.76.83-2 .21-.23.47-.29.62-.29h.44c.14.01.33-.05.52.4.2.47.69 1.64.75 1.76.06.12.1.26.02.42-.08.17-.12.27-.24.42-.12.14-.25.32-.36.43-.12.12-.24.25-.1.49.14.23.61 1 1.31 1.62.9.81 1.66 1.06 1.89 1.18.23.12.37.1.51-.05.14-.14.59-.69.75-.93.16-.23.32-.2.52-.12.21.08 1.33.62 1.56.73.23.12.38.17.43.26.06.08.06.48-.14 1.05z"/>
-      </svg>
     </a>
     <script type="module" src={scriptSrc}></script>
   </body>
