@@ -242,6 +242,10 @@ function handleFilterClick(event: Event) {
   const label = button.dataset.filterLabel || DEFAULT_FILTER_LABEL;
   applyCategoryFilter(value === 'all' ? 'all' : value, label);
   setNavState(false);
+  const catalogSection = document.querySelector<HTMLElement>('#catalogo');
+  if (catalogSection) {
+    catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function initFiltering() {

@@ -21,33 +21,35 @@ const steps = [
 ];
 ---
 <BaseLayout title="Como comprar | FT Calcos" description="Guia rapida para comprar tus calcos.">
-  <section class="space-y-6 max-w-3xl mx-auto text-center">
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Guia rapida</p>
-    <h1 class="text-4xl font-bold text-primary">Como comprar tus calcos</h1>
+  <section class="mx-auto max-w-4xl text-center space-y-4 rounded-[36px] bg-white/80 p-8 shadow-lg shadow-primary/10">
+    <p class="text-xs uppercase tracking-[0.4em] text-accent">Guia rapida</p>
+    <h1 class="text-4xl md:text-5xl font-black text-slate-900">Como comprar tus calcos</h1>
     <p class="text-lg text-slate-600">
       Elegi tus calcos, agregalos al carrito y finaliza enviando un mensaje automatico por WhatsApp. Te respondemos con los datos para transferir y coordinar entrega.
     </p>
   </section>
-  <section class="mt-12 grid gap-6">
+  <section class="mt-12 grid gap-6 md:grid-cols-2">
     {steps.map((step, index) => (
-      <article class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex gap-4" key={step.title}>
-        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-xl font-semibold">
-          {String(index + 1).padStart(2, '0')}
+      <article class="rounded-[28px] border border-white/70 bg-white/90 p-6 shadow-md shadow-slate-200/70" key={step.title}>
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-base font-semibold text-primary">
+          Paso {String(index + 1).padStart(2, '0')}
         </span>
-        <div>
-          <h2 class="text-xl font-semibold text-primary">{step.title}</h2>
-          <p class="text-slate-600">{step.body}</p>
-        </div>
+        <h2 class="mt-4 text-2xl font-semibold text-slate-900">{step.title}</h2>
+        <p class="mt-2 text-slate-600">{step.body}</p>
       </article>
     ))}
   </section>
-  <section class="mt-12 bg-primary rounded-3xl text-white p-8 grid gap-4 md:grid-cols-2">
-    <div>
-      <h2 class="text-2xl font-semibold">Necesitas otra forma de pago?</h2>
+  <section class="mt-12 grid gap-6 rounded-[32px] bg-gradient-to-br from-primary to-accent p-8 text-white md:grid-cols-[1.2fr_0.8fr]">
+    <div class="space-y-2">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/60">Escribinos directo</p>
+      <h2 class="text-3xl font-semibold">Necesitas otra forma de pago?</h2>
       <p class="text-white/80">Coordinamos transferencias, pagos en efectivo y entregas personalizadas. Escribinos y lo resolvemos.</p>
     </div>
-    <div>
-      <a href="https://wa.me/5493516183951" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center rounded-full bg-white text-primary font-semibold px-4 py-3 text-center hover:bg-white/90">WhatsApp</a>
+    <div class="flex flex-col gap-3">
+      <a href="https://wa.me/5493516183951" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center rounded-full bg-white text-primary font-semibold px-4 py-3 text-center hover:bg-white/90">
+        WhatsApp
+      </a>
+      <span class="text-sm text-white/80 text-center">Numero: +54 9 351 618 3951</span>
     </div>
   </section>
 </BaseLayout>

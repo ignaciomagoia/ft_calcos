@@ -5,22 +5,22 @@ const base = import.meta.env.BASE_URL || '/';
 ---
 <BaseLayout title="Carrito | FT Calcos" description="Revisa tu pedido y finalizalo por WhatsApp.">
   <section class="space-y-4 text-center">
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Checkout WhatsApp</p>
-    <h1 class="text-4xl font-bold text-primary">Carrito</h1>
+    <p class="text-xs font-semibold uppercase tracking-[0.4em] text-accent">Checkout WhatsApp</p>
+    <h1 class="text-4xl font-black text-slate-900">Carrito</h1>
     <p class="text-base text-slate-600">
       Ajusta cantidades, elimina productos y toca <strong>Finalizar por WhatsApp</strong> para enviarnos el detalle con el total y los datos de transferencia.
     </p>
   </section>
   <section class="mt-10" data-cart-page>
-    <div class="flex flex-col items-center gap-3 rounded-3xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center" data-cart-empty>
+    <div class="flex flex-col items-center gap-3 rounded-[32px] border border-dashed border-primary/40 bg-white/80 px-6 py-10 text-center shadow-inner" data-cart-empty>
       <p class="text-xl font-semibold text-primary">Todavia no agregaste calcos</p>
       <p class="text-sm text-slate-500">Volve al catalogo, elegi tus favoritos y agregalos desde cada tarjeta.</p>
       <a href={base} class="rounded-full border border-primary px-6 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white">Ver catalogo</a>
     </div>
     <div class="space-y-6 hidden" data-cart-shell>
       <ul class="space-y-4" data-cart-items></ul>
-      <div class="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="flex items-center justify-between text-lg font-semibold text-primary">
+      <div class="space-y-4 rounded-[32px] border border-white/80 bg-white/90 p-6 shadow-lg shadow-slate-200/50">
+        <div class="flex items-center justify-between text-lg font-semibold text-slate-900">
           <span>Total</span>
           <span data-cart-total>$0</span>
         </div>
@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL || '/';
           data-cart-whatsapp
           target="_blank"
           rel="noopener noreferrer"
-          class="block rounded-full bg-primary px-4 py-3 text-center text-base font-semibold text-white shadow hover:bg-slate-900"
+          class="block rounded-full bg-primary px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-primary/40 hover:bg-accent"
         >
           Finalizar por WhatsApp
         </a>

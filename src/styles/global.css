@@ -1,18 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #0f172a;
 }
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #c084fc 0%, #a855f7 35%, #7c3aed 70%, #4c1d95 100%);
-  background-attachment: fixed;
-  position: relative;
-  @apply text-slate-900 antialiased;
+  background: linear-gradient(180deg, #fdfbff 0%, #f7fbff 40%, #ffffff 100%);
+  @apply text-slate-900 antialiased bg-brand-soft;
 }
 
 a {
