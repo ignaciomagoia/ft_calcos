@@ -45,11 +45,11 @@ const categoryCards = categories.map((category) => ({
       <h2 class="text-3xl font-bold text-slate-900">Explora por tipo de calco</h2>
       <p class="text-slate-600">Hace clic y te llevamos directo al catálogo filtrado de esa categoria.</p>
     </div>
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr max-w-3xl mx-auto">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-3xl mx-auto">
       {categoryCards.map((category) => (
         <a
           href={category.href}
-          class="flex w-full flex-col justify-between rounded-[28px] p-4 text-left text-white shadow-lg transition hover:-translate-y-1 min-h-[210px]"
+          class="flex w-full flex-col justify-between rounded-[28px] p-4 text-left text-white shadow-lg transition hover:-translate-y-1"
           style={`background:${category.gradient}`}
         >
           <div class="flex items-center gap-3">
